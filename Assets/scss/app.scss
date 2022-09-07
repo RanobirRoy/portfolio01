@@ -1,0 +1,543 @@
+@import 'variables';
+@import 'mixin';
+@import 'boilerplate';
+@import 'global-utility-classes';
+
+// General Design
+.home-page .primary-header{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    transition: height .6s;
+    .nav-wraper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+@media (min-width: 920px){
+    .home-page.navbar-active .primary-header{
+        background-color: rgba(41, 43, 56, .9);
+        box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.1);
+        height: 8vh;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+    @supports (backdrop-filter: blur(1rem)){
+        .home-page.navbar-active .primary-header{
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(1rem);
+        }
+    }
+}
+.home-page.navbar-active .about{
+    display: none;
+}
+.home-page .nav-wraper .nav-toggle{
+    display: none;
+    color: $clr-white-400;
+}
+.nav-wraper .nav-toggle .icons[name="close"]{
+    display: none;
+}
+.home-page .primary-navigation ul{
+    display: flex;
+    align-items: center;
+    background: transparent;
+    gap: min(1.5rem, 2vw);
+    user-select: none;
+}
+.home-page .primary-navigation ul li a{
+    color: $clr-white-400;
+    font-family: $ff-nav;
+    font-size: var(--fs-nav);
+    &:hover{
+        color: $clr-yellow-400;
+    }
+}
+@media (max-width: 920px){
+    .nav-wraper .primary-navigation ul{
+        display: flex;
+        gap: 2vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        inset: 0 0 0 30%;
+        background: $clr-black-300;
+        transform: translateX(100%);
+        visibility: hidden;
+        opacity: 0;
+        transition: .5s;
+        z-index: 99;
+    }
+    .home-page .nav-wraper .nav-toggle{
+        display: grid;
+        height: 2rem;
+        width: 2rem;
+        place-items: center;
+        font-size: 1.5rem;
+        border: 1px solid $clr-white-400;
+        z-index: 999;
+    }
+    .nav-wraper.nav-active .nav-toggle .icons[name="close"]{
+        display: block;
+    }
+    .nav-wraper.nav-active .nav-toggle .icons[name="bars"]{
+        display: none;
+    }
+    .nav-active .primary-navigation ul{
+        transform: translateX(0);
+        visibility: visible;
+        opacity: 1;
+    }
+}
+@media (max-width: 425px){
+    .nav-active .primary-navigation ul{
+        inset: 0;
+    }
+}
+
+// ---------------Home Page Design
+
+.home-page-content {
+    .home-left{
+        height: 85vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        .home-left-wraper .home-button-group{
+            display: flex;
+            gap: min(1rem, 2vw);
+        }
+    }
+    .home-right{
+        height: 85vh;
+        display: grid;
+        place-items: center;
+    }
+}
+@media (max-width: 768px) {
+       .home-page-content .home-right .home-right-wraper{
+        display: grid;
+        place-items: center;
+        img{
+            width: 70%;
+        }
+       }    
+}
+@media (max-width: 425px) {
+    .home-page-content .home-left .home-left-wraper{
+        p{
+            text-align: justify; 
+        }
+        .home-button-group{
+            justify-content: center;
+        }
+    }
+    .home-page-content .home-right{
+        height: 50vh;
+    }  
+}
+.home-page-content .home-left .home-left-wraper .typing-text{
+    display: flex;
+    align-items: center;
+    .static-text{
+        color: $clr-white-400;
+        font-size: var(--fs-secondary-heading);
+        font-weight: $fw-semi-bold;
+        font-family: $ff-text;
+    }
+    .dynamic-text{
+        margin-left: 1rem;
+        height: 2rem;
+        line-height: 2.3rem;
+        overflow: hidden;
+        li{
+            color: $clr-yellow-400;
+            font-size: var(--fs-secondary-heading);
+            font-weight: $fw-semi-bold;
+            font-family: $ff-text;
+            position: relative;
+            top: 0;
+            animation: typing-slide 9s steps(3) infinite;
+            span{
+                position: relative;
+                &::after{
+                    position: absolute;
+                    content: "";
+                    height: 100%;
+                    width: 100%;
+                    left: 0;
+                    background: $clr-black-400;
+                    border-left: 2px solid $clr-yellow-400;
+                    animation: typing 3s steps(22) infinite;
+                }
+            }
+        }
+    }
+}
+@keyframes typing-slide {
+    100%{
+        top: -7rem;
+    }
+}
+@keyframes typing {
+    100%{
+        left: 100%;
+    }
+}
+// ---------------About Design
+.about {
+    .about-left img{
+        width: 80%;
+    }
+    .about-right .home-communities-group{
+        display: flex;
+        gap: var(--size-400);
+        img{
+            width: 3rem;
+        }
+    }
+}
+@media (max-width: 768px){
+    .about .about-left{
+        display: grid;
+        place-items: center;
+        img{
+            width: 60%;
+        }
+    }
+}
+@media (max-width: 425px){
+    .about{
+        .about-left img{
+            display: none;
+        }
+        .about-right{
+            h1{
+                text-align: center;
+            }
+            p{
+                text-align: justify;
+            }
+        }
+    }
+}
+// ---------------What i do Design
+.what-i-do .what-i-do-content{
+    .do-card{
+        background-color: $clr-black-300;
+        padding: .5rem;
+        display: flex;
+        gap: var(--size-400);
+        cursor: default;
+        .do-card-profile{
+            display: grid;
+            place-items: center;
+        }
+        .do-card-text h2{
+            display: flex;
+            align-items: center;
+            .fa-circle-check{
+                margin-left: var(--size-300);
+                color: lightgreen;
+            }
+        }
+    }
+}
+
+// ---------------Skill Design
+.skill .skill-content{
+    width: 51rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(2 ,25rem);
+    gap: 1rem;
+    .skill-card{
+        display: flex;
+        align-items: center;
+        border: 1px solid $clr-white-100;
+        border-radius: 10px;
+        padding: .8rem;
+        gap: 1rem;
+        user-select: none;
+        background-color: $clr-black-400;
+        &:hover .skill-text h2 span{
+            color: $clr-yellow-400;
+        }
+        .skill-profile{
+            img{
+                width: 3rem;
+            }
+        }
+        .skill-text{
+            h2{
+                span{
+                    margin-left: 1rem;
+                }
+            }
+            .skill-group{
+                display: flex;
+                gap: .5rem;
+                p{
+                    background-color: $clr-black-400;
+                    padding: 0 10px;
+                    border-radius: 100vmax;
+                    border: 1px solid $clr-white-100;
+                    box-shadow: 0 3px 5px rgba(255, 255, 255, 0.05);
+                }
+            }
+        }
+    }
+}
+@media (max-width: 320px){
+    .skill .skill-content .skill-card .skill-text h2 span{
+        margin-left: .5rem;
+      }
+}
+.skill .skill-group-container .skill-group{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+    gap: 2rem;
+    place-items: center;
+    span{
+        color: var(--clr-skill-group);
+        font-size: 3rem;
+        &:hover{
+            filter:
+                drop-shadow(0 0 10px var(--clr-skill-group))
+                drop-shadow(0 0 20px var(--clr-skill-group))
+                drop-shadow(0 0 30px var(--clr-skill-group));
+        }
+    }
+    span.skill-active{
+        animation: skill-rotate 3s linear infinite;
+        filter:
+                drop-shadow(0 0 10px var(--clr-skill-group))
+                drop-shadow(0 0 20px var(--clr-skill-group))
+                drop-shadow(0 0 30px var(--clr-skill-group));
+    }
+}
+@keyframes skill-rotate {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@media (max-width: 768px){
+    .skill .skill-content{
+        width: 25rem;
+        grid-template-columns: 25rem;
+    }
+}
+@media (max-width: 425px){
+    .skill .skill-content{
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 375px){
+    .skill .skill-content .skill-card .skill-text{
+      .skill-group{
+        flex-direction: column;
+        text-align: center;
+        }   
+    }    
+}
+// ---------------exprience Design
+.exprience .exprience-content{
+    .exprience-card{
+        display: flex;
+        background-color: $clr-black-300;
+        border: 1px solid $clr-white-100;
+        padding: .5rem;
+        align-items: center;
+        .exprience-card-intro{
+            flex: 2;
+            padding-right: 1vw;
+            text-align: center;
+        }
+        .exprience-card-info{
+            flex: 4;
+            p.para{
+                text-align: justify;
+            }
+            ul li{
+                list-style: disc;
+                color: $clr-white-400;
+                margin-left: 3rem;
+            }
+        }
+    }
+}
+@media (max-width: 425px){
+    .exprience .exprience-content .exprience-card{
+        flex-direction: column;
+        gap: 1rem;
+        .exprience-card-intro{
+            display: grid;
+            place-items: center;
+            img{
+                width: 50%;
+            }
+        }
+    }
+}
+// ---------------Project Design
+.project .project-content .project-card{
+    background-color: $clr-black-400;
+    box-shadow: 0 5px 10px rgba(0, 255, 255, 0.03);
+    transition: transform .3s ease;
+    &:hover{
+        transform: rotate(1deg) scale(1.05);
+    }
+    .project-card-text{
+        padding: var(--size-400) var(--size-400) 0 var(--size-400);
+        h1{
+            margin-bottom: 1rem;
+        }
+    }
+    .project-card-used{
+        padding: 1rem 1rem .5rem 1rem;
+        display: flex;
+        font-size: 2rem;
+        & > * {
+            flex: 1;
+        }
+        span{
+            color: var(--clr-project);
+        }
+    }
+}
+// ---------------Portfolio Design
+.portfolio .portfolio-content .portfolio-card{
+    background-color: $clr-black-300;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+    transition: transform .3s ease;
+    &:hover{
+        transform: scale(1.05);
+    }
+    img{
+        border-radius: 10px 10px 0 0;
+    }
+    .portfolio-card-text{
+        padding: var(--size-400) var(--size-400) 0 var(--size-400);
+        h1{
+            margin-bottom: 1rem;
+        }
+    }
+    .portfolio-card-used{
+        padding: 1rem 1rem .5rem 1rem;
+        display: flex;
+        font-size: 2rem;
+        & > * {
+            flex: 1;
+        }
+        span{
+            color: var(--clr-portfolio);
+        }
+    }
+}
+@supports (backdrop-filter: blur(1rem)){
+    .portfolio .portfolio-content .portfolio-card{
+        background-color: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(5rem);
+    }
+}
+// ---------------Contact i do Design
+.contact{
+    background-image: url("/Assets/images/contact-bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $clr-black-300;
+    background-blend-mode: multiply;
+    .contact-form{
+        text-align: center;
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+            input[type="email"]{
+                background: transparent;
+                padding: .5em 0 .5em 1.5em;
+                outline: none;
+                border: 2px solid $clr-white-300;
+                border-radius: 100vmax;
+                color: $clr-white-400;
+                font-family: $ff-body;
+                transition: .3s;
+                &::placeholder{
+                    color: $clr-white-300;
+                    font-family: $ff-body;
+                }
+                &:focus{
+                    border: 2px solid $clr-white-400;
+                }
+                &:valid{
+                    border: 2px solid green;
+                }
+            }
+        }
+    }
+    .contact-content{
+        .contacts ul{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            li{
+                h1 span{
+                    margin-right: var(--size-400);
+                }
+                .contact-links{
+                    display: flex;
+                    gap: 2rem;
+                    justify-content: center;
+                    a{
+                        font-size: var(--size-700);
+                        color: $clr-white-400;
+                        &:hover{
+                            color: $clr-white-300;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.contact .contact-content{
+    margin-top: 5rem;
+}
+@media (min-width: 50em){
+    .contact .contact-content .contacts ul{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+@media (max-width: 320px){
+    .contact .contact-form form{
+        flex-direction: column;
+    }
+}
+// ---------------Footer i do Design
+.footer .footer-wraper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (max-width: 320px){
+    .footer .footer-wraper{
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+}

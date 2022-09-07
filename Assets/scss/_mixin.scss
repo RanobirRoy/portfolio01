@@ -1,0 +1,14 @@
+@mixin heading-code {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 8rem;
+    font-family: $ff-heading;
+    font-weight: $fw-bold;
+    color: $clr-white-100;
+    opacity: .3;
+}
+@mixin heading-codeTop {
+    position: relative;
+}

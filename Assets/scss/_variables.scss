@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@400;500;700&display=swap');
+@font-face{
+    font-family: "Gumela";
+    src: url('../font/Gumela.ttf') format('ttf');
+}
+
+$clr-black-400: hsl(232, 17%, 17%);
+$clr-black-300: hsl(232, 15%, 19%);
+$clr-yellow-400: hsl(10, 96%, 65%);
+$clr-white-100: rgba(255, 255, 255, 0.102);
+$clr-white-300: hsl(0, 0%, 57%);
+$clr-white-400: hsl(0, 0%, 100%);
+
+$ff-primary: 'Nunito', sans-serif;
+$ff-secondary: 'Gumela', Nunito;
+$ff-text: 'Poppins', sans-serif;
+
+$ff-body: ($ff-primary);
+$ff-nav: ($ff-text);
+$ff-heading: ($ff-secondary);
+
+$fw-regular: 400;
+$fw-semi-bold: 600;
+$fw-bold: 700;
+
+:root{
+    --size-100: .5rem;
+    --size-200: .8rem;
+    --size-300: .95rem;
+    --size-400: 1rem;
+    --size-500: 1.5rem;
+    --size-600: 2rem;
+    --size-700: 2.5rem;
+    --size-800: 3.5rem;
+    --size-900: 4rem;
+
+    --fs-body: var(--size-400);
+    --fs-nav: var(--size-300);
+    --fs-btn: var(--size-200);
+    --fs-home-heading: var(--size-700);
+    --fs-primary-heading: var(--size-500);
+    --fs-secondary-heading: var(--size-400);
+}
+@media (min-width: 50em){
+    :root{
+        // --fs-body: clamp(var(--size-400), 12vw + 1, 12rem);
+        --fs-body: var(--size-400);
+        --fs-nav: var(--size-300);
+        --fs-btn: var(--size-400);
+        --fs-home-heading: var(--size-800);
+        --fs-primary-heading: var(--size-600);
+        --fs-secondary-heading: var(--size-500);
+    }
+}
